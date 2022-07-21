@@ -1,3 +1,4 @@
 .env
 .idea
 images
+__pycache__

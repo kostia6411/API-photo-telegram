@@ -1,5 +1,7 @@
 import requests
 import os
+import telegram
+from dotenv import load_dotenv
 
 
 IMAGES_PATH = "./images"
@@ -13,7 +15,11 @@ def download_file(url, file_path, params=None):
 
 
 def main():
-    pass
+    load_dotenv()
+    bot_token = os.getenv("TOKEN")
+    bot = telegram.Bot(token=bot_token)
+    bot.send_message(chat_id="@abobus88321", text="I'm sorry Dave I'm afraid I can't do that.")
+    print(bot.get_me())
 
 
 if __name__ == "__main__":

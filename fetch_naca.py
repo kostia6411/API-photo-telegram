@@ -44,7 +44,7 @@ def fetch_naca(api_key,count):
 
 def main():
     load_dotenv()
-    api_key = os.getenv("API_KEY")
+    api_key = os.getenv("NASA_API_KEY")
     os.makedirs(IMAGES_PATH, exist_ok=True)
     fetch_naca(api_key)
     fetch_naca_epic(api_key)

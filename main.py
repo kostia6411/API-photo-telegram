@@ -16,9 +16,10 @@ def download_file(url, file_path, params=None):
 
 def main():
     load_dotenv()
-    bot_token = os.getenv("TOKEN")
+    bot_token = os.getenv("TG_BOT_TOKEN")
+    chat_id = os.getenv("TG_CHAT_ID")
     bot = telegram.Bot(token=bot_token)
-    bot.send_message(chat_id="@abobus88321", text="I'm sorry Dave I'm afraid I can't do that.")
+    bot.send_document(chat_id=chat_id, document=open('images/70_0spacex.jpeg', 'rb'))
     print(bot.get_me())
 
 

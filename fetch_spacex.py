@@ -1,8 +1,10 @@
+import argparse
+import os
+
 import requests
+
 from main import IMAGES_PATH
 from main import download_file
-import os
-import argparse
 
 
 def fetch_spacex_launch(launch_namber):
@@ -15,16 +17,23 @@ def fetch_spacex_launch(launch_namber):
         file_path = f"{IMAGES_PATH}/{launch_namber}_{count}{filename}"
         download_file(link, file_path)
 
+
 def main():
     os.makedirs(IMAGES_PATH, exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Скачивает картинки'
     )
-    parser.add_argument('launch', help='Номер запуска', default=70, nargs="?", type=int)
+    parser.add_argument(
+        'launch',
+        help='Номер запуска',
+        default=70,
+        nargs="?",
+        type=int
+    )
     args = parser.parse_args()
     launch_namber = args.launch
     fetch_spacex_launch(launch_namber)
 
+
 if __name__ == "__main__":
     main()
-

@@ -1,11 +1,13 @@
-import requests
-from main import IMAGES_PATH
+import argparse
+import os
 from datetime import datetime
 from urllib.parse import urlparse
-from main import download_file
-import os
+
+import requests
 from dotenv import load_dotenv
-import argparse
+
+from main import IMAGES_PATH
+from main import download_file
 
 
 def fetch_naca_epic(api_key):
@@ -26,10 +28,10 @@ def fetch_naca_epic(api_key):
         download_file(url_image, file_path, params=payload)
 
 
-def fetch_naca(api_key,count):
+def fetch_naca(api_key, count):
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
-        "count" : count,
+        "count": count,
         "api_key": api_key
     }
     response = requests.get(url, params=payload)
@@ -42,18 +44,20 @@ def fetch_naca(api_key,count):
             file_path = f"{IMAGES_PATH}/{number}naca.{extension}"
             download_file(picture_link, file_path)
 
+
 def main():
     load_dotenv()
     api_key = os.getenv("NASA_API_KEY")
     os.makedirs(IMAGES_PATH, exist_ok=True)
-    fetch_naca(api_key)
-    fetch_naca_epic(api_key)
     parser = argparse.ArgumentParser(
         description='Скачивает картинки'
     )
     parser.add_argument('count', help='Количество фотографий', default=30, nargs="?", type=int)
     args = parser.parse_args()
     count = args.count
+    fetch_naca(api_key, count)
+    fetch_naca_epic(api_key)
+
 
 if __name__ == "__main__":
     main()

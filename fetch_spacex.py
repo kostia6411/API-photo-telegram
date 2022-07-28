@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 
 import requests
@@ -32,7 +33,11 @@ def main():
     )
     args = parser.parse_args()
     launch_number = args.launch
-    fetch_spacex_launch(launch_number)
+    try:
+        fetch_spacex_launch(launch_number)
+    except requests.exceptions.HTTPError:
+        logging.warning("Произошла ошибка при загрузке фотографий.")
+
 
 
 if __name__ == "__main__":

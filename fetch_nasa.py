@@ -1,4 +1,5 @@
 import argparse
+import logging
 import os
 from datetime import datetime
 from urllib.parse import urlparse
@@ -56,8 +57,11 @@ def main():
     parser.add_argument('count', help='Количество фотографий', default=30, nargs="?", type=int)
     args = parser.parse_args()
     count = args.count
-    fetch_nasa(api_key, count)
-    fetch_nasa_epic(api_key)
+    try:
+        fetch_nasa(api_key, count)
+        fetch_nasa_epic(api_key)
+    except requests.exceptions.HTTPError:
+        logging.warning("Произошла ошибка при загрузке фотографий.")
 
 
 if __name__ == "__main__":

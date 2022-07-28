@@ -1,3 +1,4 @@
+import logging
 import os
 import random
 from time import sleep
@@ -5,6 +6,7 @@ from time import sleep
 import requests
 import telegram
 from dotenv import load_dotenv
+
 
 IMAGES_PATH = os.path.join(".", "images")
 
@@ -25,8 +27,11 @@ def main():
     pictures = os.listdir(path=IMAGES_PATH)
     while True:
         random_picture = random.choice(pictures)
-        with open(os.path.join(IMAGES_PATH, random_picture), 'rb') as photo:
-            bot.send_photo(chat_id=chat_id, photo=photo)
+        try:
+            with open(os.path.join(IMAGES_PATH, random_picture), 'rb') as photo:
+                bot.send_photo(chat_id=chat_id, photo=photo)
+        except telegram.error:
+            logging.warning("Произошла ошибка связанная с телеграм.")
         sleep(delay)
 
 

@@ -22,14 +22,11 @@ def main():
     chat_id = os.getenv("TG_CHAT_ID")
     delay = int(os.getenv("DELAY", 14400))
     bot = telegram.Bot(token=bot_token)
-    pictures = os.listdir(path='images')
+    pictures = os.listdir(path=IMAGES_PATH)
     while True:
-        random_pictures = random.choice(pictures)
-        print(random_pictures)
-        bot.send_photo(chat_id=chat_id, photo=open(
-            os.path.join("images", random_pictures),
-            'rb'
-        ))
+        random_picture = random.choice(pictures)
+        with open(os.path.join(IMAGES_PATH, random_picture), 'rb') as photo:
+            bot.send_photo(chat_id=chat_id, photo=photo)
         sleep(delay)
 
 

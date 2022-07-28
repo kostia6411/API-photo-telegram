@@ -7,11 +7,12 @@ from urllib.parse import urlparse
 import requests
 from dotenv import load_dotenv
 
-from main import IMAGES_PATH
 from main import download_file
 
 
 def fetch_nasa_epic(api_key):
+    load_dotenv()
+    images_path = os.getenv("IMAGES_PATH")
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     payload = {
         "api_key": api_key
@@ -25,11 +26,13 @@ def fetch_nasa_epic(api_key):
         disassembled_date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
         ready_date = disassembled_date.strftime("%Y/%m/%d")
         url_image = f"https://api.nasa.gov/EPIC/archive/natural/{ready_date}/png/{image}.png"
-        file_path = os.path.join(IMAGES_PATH, image, ".png")
+        file_path = os.path.join(images_path, image, ".png")
         download_file(url_image, file_path, params=payload)
 
 
 def fetch_nasa(api_key, count):
+    load_dotenv()
+    images_path = os.getenv("IMAGES_PATH")
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -43,14 +46,15 @@ def fetch_nasa(api_key, count):
             picture_link = picture["hdurl"]
             extension = os.path.splitext(urlparse(picture_link).path)[1]
             file_name = f"{number}naca.{extension}"
-            file_path = os.path.join(IMAGES_PATH, file_name)
+            file_path = os.path.join(images_path, file_name)
             download_file(picture_link, file_path)
 
 
 def main():
     load_dotenv()
+    images_path = os.getenv("IMAGES_PATH")
     api_key = os.getenv("NASA_API_KEY")
-    os.makedirs(IMAGES_PATH, exist_ok=True)
+    os.makedirs(images_path, exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Скачивает картинки'
     )

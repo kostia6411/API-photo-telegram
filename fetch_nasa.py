@@ -10,7 +10,7 @@ from main import IMAGES_PATH
 from main import download_file
 
 
-def fetch_naca_epic(api_key):
+def fetch_nasa_epic(api_key):
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     payload = {
         "api_key": api_key
@@ -28,7 +28,7 @@ def fetch_naca_epic(api_key):
         download_file(url_image, file_path, params=payload)
 
 
-def fetch_naca(api_key, count):
+def fetch_nasa(api_key, count):
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -56,8 +56,8 @@ def main():
     parser.add_argument('count', help='Количество фотографий', default=30, nargs="?", type=int)
     args = parser.parse_args()
     count = args.count
-    fetch_naca(api_key, count)
-    fetch_naca_epic(api_key)
+    fetch_nasa(api_key, count)
+    fetch_nasa_epic(api_key)
 
 
 if __name__ == "__main__":

@@ -31,8 +31,8 @@ def main():
         type=int
     )
     args = parser.parse_args()
-    launch_namber = args.launch
-    fetch_spacex_launch(launch_namber)
+    launch_number = args.launch
+    fetch_spacex_launch(launch_number)
 
 
 if __name__ == "__main__":

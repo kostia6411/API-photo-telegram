@@ -14,7 +14,7 @@ def fetch_spacex_launch(launch_namber):
     response.raise_for_status()
     spacex_photo_links = response.json()["links"]["flickr_images"]
     for count, link in enumerate(spacex_photo_links):
-        file_path = f"{IMAGES_PATH}/{launch_namber}_{count}{filename}"
+        file_path = os.path.join(IMAGES_PATH, launch_namber, "_", count, filename)
         download_file(link, file_path)
 
 

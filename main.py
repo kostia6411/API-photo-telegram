@@ -6,7 +6,7 @@ import requests
 import telegram
 from dotenv import load_dotenv
 
-IMAGES_PATH = "./images"
+IMAGES_PATH = os.path.join(".", "images")
 
 
 def download_file(url, file_path, params=None):
@@ -27,7 +27,7 @@ def main():
         random_pictures = random.choice(pictures)
         print(random_pictures)
         bot.send_photo(chat_id=chat_id, photo=open(
-            f'images/{random_pictures}',
+            os.path.join("images", random_pictures),
             'rb'
         ))
         sleep(delay)

@@ -24,7 +24,7 @@ def fetch_naca_epic(api_key):
         disassembled_date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
         ready_date = disassembled_date.strftime("%Y/%m/%d")
         url_image = f"https://api.nasa.gov/EPIC/archive/natural/{ready_date}/png/{image}.png"
-        file_path = f"{IMAGES_PATH}/{image}.png"
+        file_path = os.path.join(IMAGES_PATH, image, ".png")
         download_file(url_image, file_path, params=payload)
 
 
@@ -41,7 +41,8 @@ def fetch_naca(api_key, count):
         if picture.get("hdurl", False):
             picture_link = picture["hdurl"]
             extension = os.path.splitext(urlparse(picture_link).path)[1]
-            file_path = f"{IMAGES_PATH}/{number}naca.{extension}"
+            file_name = f"{number}naca.{extension}"
+            file_path = os.path.join(IMAGES_PATH, file_name)
             download_file(picture_link, file_path)
 
 

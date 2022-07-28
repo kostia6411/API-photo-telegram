@@ -36,10 +36,10 @@ python main.py
 python fetch_spacex.py
 ```
 
-Скрипт fetch_naca.py скачивает naca картинки.
+Скрипт fetch_naca.py скачивает nasa картинки.
 Для запуска скрипта напишите в терминале: 
 ```
-python fetch_naca.py [количество фотографий]
+python fetch_nasa.py [количество фотографий]
 ```
 
 ### Цель проекта

@@ -15,6 +15,7 @@ NASA_API_KEY=[ваш насовский API ключ]
 TG_BOT_TOKEN=[ваш токен телеграм бота]
 TG_CHAT_ID=[ваш ID чата]
 DELAY=[время]
+IMAGES_PATH=[путь до файла]
 ```
 
 Python3 должен быть уже установлен. 

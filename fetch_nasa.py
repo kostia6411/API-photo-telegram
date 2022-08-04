@@ -10,9 +10,7 @@ from dotenv import load_dotenv
 from main import download_file
 
 
-def fetch_nasa_epic(api_key):
-    load_dotenv()
-    images_path = os.getenv("IMAGES_PATH")
+def fetch_nasa_epic(api_key, images_path):
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     payload = {
         "api_key": api_key
@@ -30,9 +28,7 @@ def fetch_nasa_epic(api_key):
         download_file(url_image, file_path, params=payload)
 
 
-def fetch_nasa(api_key, count):
-    load_dotenv()
-    images_path = os.getenv("IMAGES_PATH")
+def fetch_nasa(api_key, count, images_path):
     url = "https://api.nasa.gov/planetary/apod"
     payload = {
         "count": count,
@@ -62,8 +58,8 @@ def main():
     args = parser.parse_args()
     count = args.count
     try:
-        fetch_nasa(api_key, count)
-        fetch_nasa_epic(api_key)
+        fetch_nasa(api_key, count, images_path)
+        fetch_nasa_epic(api_key, images_path)
     except requests.exceptions.HTTPError:
         logging.warning("Произошла ошибка при загрузке фотографий.")
 

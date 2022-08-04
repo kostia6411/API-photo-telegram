@@ -8,9 +8,7 @@ from dotenv import load_dotenv
 from main import download_file
 
 
-def fetch_spacex_launch(launch_namber):
-    load_dotenv()
-    images_path = os.getenv("IMAGES_PATH")
+def fetch_spacex_launch(launch_namber, images_path):
     url = f"https://api.spacexdata.com/v3/launches/{launch_namber}"
     response = requests.get(url)
     response.raise_for_status()
@@ -38,7 +36,7 @@ def main():
     args = parser.parse_args()
     launch_number = args.launch
     try:
-        fetch_spacex_launch(launch_number)
+        fetch_spacex_launch(launch_number, images_path)
     except requests.exceptions.HTTPError:
         logging.warning("Произошла ошибка при загрузке фотографий.")
 

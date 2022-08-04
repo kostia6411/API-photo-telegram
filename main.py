@@ -28,9 +28,10 @@ def main():
         try:
             with open(os.path.join(images_path, random_picture), 'rb') as photo:
                 bot.send_photo(chat_id=chat_id, photo=photo)
+            sleep(delay)
         except telegram.error.NetworkError:
-            logging.warning("Произошла ошибка связанная с телеграм.")
-        sleep(delay)
+            logging.warning("Произошла ошибка при попытке подключения к серверу телеграм, проверте подключению у интернету.")
+            sleep(30)
 
 
 if __name__ == "__main__":

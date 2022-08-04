@@ -17,7 +17,7 @@ def download_file(url, file_path, params=None):
 
 def main():
     load_dotenv()
-    images_path = os.getenv("IMAGES_PATH")
+    images_path = os.getenv("IMAGES_PATH", "images")
     bot_token = os.getenv("TG_BOT_TOKEN")
     chat_id = os.getenv("TG_CHAT_ID")
     delay = int(os.getenv("DELAY", 14400))

@@ -52,7 +52,7 @@ def fetch_nasa(api_key, count):
 
 def main():
     load_dotenv()
-    images_path = os.getenv("IMAGES_PATH")
+    images_path = os.getenv("IMAGES_PATH", "images")
     api_key = os.getenv("NASA_API_KEY")
     os.makedirs(images_path, exist_ok=True)
     parser = argparse.ArgumentParser(

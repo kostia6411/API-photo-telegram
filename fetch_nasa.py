@@ -60,8 +60,8 @@ def main():
     try:
         fetch_nasa(api_key, count, images_path)
         fetch_nasa_epic(api_key, images_path)
-    except requests.exceptions.HTTPError:
-        logging.warning("Произошла ошибка при загрузке фотографий.")
+    except requests.exceptions.HTTPError as error:
+        logging.warning(f"Произошла ошибка при загрузке фотографий.{error}")
 
 
 if __name__ == "__main__":

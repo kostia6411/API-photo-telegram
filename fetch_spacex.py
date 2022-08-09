@@ -37,8 +37,8 @@ def main():
     launch_number = args.launch
     try:
         fetch_spacex_launch(launch_number, images_path)
-    except requests.exceptions.HTTPError:
-        logging.warning("Произошла ошибка при загрузке фотографий.")
+    except requests.exceptions.HTTPError as error:
+        logging.warning(f"Произошла ошибка при загрузке фотографий.{error}")
 
 
 

@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 import requests
 from dotenv import load_dotenv
 
-from main import download_file
+from tools import download_file
 
 
 def fetch_nasa_epic(api_key, images_path):

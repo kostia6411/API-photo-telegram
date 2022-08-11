@@ -19,11 +19,9 @@ def fetch_nasa_epic(api_key, images_path):
     response.raise_for_status()
     pictures = response.json()
     for image_nasa in pictures:
-        date = image_nasa["date"]
         image = image_nasa["image"]
-        disassembled_date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-        ready_date = disassembled_date.strftime("%Y/%m/%d")
-        url_image = f"https://api.nasa.gov/EPIC/archive/natural/{ready_date}/png/{image}.png"
+        date = datetime.strptime(image_nasa["date"], "%Y-%m-%d %H:%M:%S")
+        url_image = f"https://api.nasa.gov/EPIC/archive/natural/{date:%Y/%m/%d}/png/{image}.png"
         file_path = os.path.join(images_path, image, ".png")
         download_file(url_image, file_path, params=payload)
 

@@ -41,7 +41,7 @@ def fetch_nasa(api_key, count, images_path):
         if picture.get("hdurl", False):
             picture_link = picture["hdurl"]
             extension = os.path.splitext(urlparse(picture_link).path)[1]
-            file_name = f"{number}naca.{extension}"
+            file_name = f"{number}nasa.{extension}"
             file_path = os.path.join(images_path, file_name)
             download_file(picture_link, file_path)
 

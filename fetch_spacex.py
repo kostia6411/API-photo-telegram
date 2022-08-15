@@ -8,13 +8,13 @@ from dotenv import load_dotenv
 from tools import download_file
 
 
-def fetch_spacex_launch(launch_namber, images_path):
-    url = f"https://api.spacexdata.com/v3/launches/{launch_namber}"
+def fetch_spacex_launch(launch_number, images_path):
+    url = f"https://api.spacexdata.com/v3/launches/{launch_number}"
     response = requests.get(url)
     response.raise_for_status()
     spacex_photo_links = response.json()["links"]["flickr_images"]
     for count, link in enumerate(spacex_photo_links):
-        filename = f'{launch_namber}_{count}spacex.jpeg'
+        filename = f'{launch_number}_{count}spacex.jpeg'
         file_path = os.path.join(images_path, filename)
         download_file(link, file_path)
 

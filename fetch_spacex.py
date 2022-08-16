@@ -41,6 +41,5 @@ def main():
         logging.warning(f"Произошла ошибка при загрузке фотографий.{error}")
 
 
-
 if __name__ == "__main__":
     main()

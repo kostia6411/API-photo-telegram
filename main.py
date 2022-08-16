@@ -22,7 +22,7 @@ def main():
                 bot.send_photo(chat_id=chat_id, photo=photo)
             sleep(delay)
         except telegram.error.NetworkError:
-            logging.warning("Произошла ошибка при попытке подключения к серверу телеграм, проверьте подключению у интернету.")
+            logging.warning("Произошла ошибка при попытке подключения к серверу телеграм, проверьте подключение у интернету.")
             sleep(30)
 
 
